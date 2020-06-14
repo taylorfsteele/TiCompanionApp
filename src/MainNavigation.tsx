@@ -33,21 +33,39 @@ function HomeScreen() {
   );
 }
 
-const MainNavigation = () => {
+function StackScreens() {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
-      mode="modal"
+      initialRouteName="Tabs"
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Tabs" component={TabScreens} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
+  );
+}
+
+const MainNavigation = () => {
+  return (
+    <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
+      <Drawer.Screen name="Stack" component={StackScreens} />
+    </Drawer.Navigator>
   );
 };
 
 const styles = StyleSheet.create({});
 
 export default MainNavigation;
+
+//<Stack.Navigator
+//   initialRouteName="Home"
+//   mode="modal"
+// screenOptions={{
+//   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+// }}>
+//   <Stack.Screen name="Home" component={HomeScreen} />
+//   <Stack.Screen name="Profile" component={ProfileScreen} />
+//   <Stack.Screen name="Settings" component={SettingsScreen} />
+// </Stack.Navigator>
