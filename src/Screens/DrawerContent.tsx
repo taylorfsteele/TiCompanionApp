@@ -12,11 +12,15 @@ const DrawerContent = (props) => {
     <DrawerContentScrollView {...props}>
       <DrawerItem
         label="Profile"
-        onPress={() => props.navigation.navigate('Profile')}
+        onPress={() =>
+          props.navigation.closeDrawer() & props.navigation.navigate('Profile')
+        }
       />
       <DrawerItem
         label="Settings"
-        onPress={() => props.navigation.navigate('Settings')}
+        onPress={() =>
+          props.navigation.closeDrawer() & props.navigation.navigate('Settings')
+        }
       />
     </DrawerContentScrollView>
   );

@@ -12,9 +12,17 @@ import FaqScreen from './Screens/FaqScreen';
 import GameScreen from './Screens/GameScreen';
 import DrawerContent from './Screens/DrawerContent';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+
+function DrawerScreens() {
+  return (
+    <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
+      <Drawer.Screen name="TabScreens" component={TabScreens} />
+    </Drawer.Navigator>
+  );
+}
 
 function TabScreens() {
   return (
@@ -25,33 +33,21 @@ function TabScreens() {
   );
 }
 
-function HomeScreen() {
+const MainNavigation = () => {
   return (
-    <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
-      <Drawer.Screen name="TabScreens" component={TabScreens} />
-    </Drawer.Navigator>
-  );
-}
-
-function StackScreens() {
-  return (
-    <Stack.Navigator
+    <RootStack.Navigator
       initialRouteName="Tabs"
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-      <Stack.Screen name="Tabs" component={TabScreens} />
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
-    </Stack.Navigator>
-  );
-}
-
-const MainNavigation = () => {
-  return (
-    <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Stack" component={StackScreens} />
-    </Drawer.Navigator>
+      <RootStack.Screen
+        name="Drawer"
+        component={DrawerScreens}
+        options={{ headerShown: false }}
+      />
+      <RootStack.Screen name="Profile" component={ProfileScreen} />
+      <RootStack.Screen name="Settings" component={SettingsScreen} />
+    </RootStack.Navigator>
   );
 };
 
@@ -59,13 +55,4 @@ const styles = StyleSheet.create({});
 
 export default MainNavigation;
 
-//<Stack.Navigator
-//   initialRouteName="Home"
-//   mode="modal"
-// screenOptions={{
-//   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-// }}>
-//   <Stack.Screen name="Home" component={HomeScreen} />
-//   <Stack.Screen name="Profile" component={ProfileScreen} />
-//   <Stack.Screen name="Settings" component={SettingsScreen} />
-// </Stack.Navigator>
+//screenOptions={{cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS}}

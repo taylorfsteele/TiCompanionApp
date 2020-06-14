@@ -2,11 +2,11 @@ TiCompanionApp
 
 Nav Flow:
 
-    -Drawer
-        -Stack
-            -Main (Tabs)
+    -Stack
+        -Drawer
+            -Home (Tabs)
                 -Faq
                 -Games
                 -Tech
-            -Profile
-            -Settings
+        -Profile
+        -Settings
